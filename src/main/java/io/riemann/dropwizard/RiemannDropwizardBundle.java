@@ -1,12 +1,15 @@
 package io.riemann.dropwizard;
 
-import com.codahale.metrics.riemann.DropWizardRiemannReporter;
 import com.codahale.metrics.riemann.Riemann;
+import com.codahale.metrics.riemann.RiemannReporter;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
+import io.dropwizard.Configuration;
+import io.dropwizard.ConfiguredBundle;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 import java.io.IOException;
@@ -18,13 +21,14 @@ import java.util.concurrent.TimeUnit;
  * /***
  * Created by nitish.goyal on 04/08/18
  ***/
-public class RiemannDropwizardBundle {
+@Slf4j
+public abstract class RiemannDropwizardBundle<T extends Configuration> implements ConfiguredBundle<T> {
 
     private static Riemann riemann;
 
-    private static RiemannRe riemannReporter;
+    private static RiemannReporter riemannReporter;
 
-    public abstract RiemannConfig getRiemannConfiguration(T configuration);
+    public abstract RiemannDropwizardConfig getRiemannConfiguration(T configuration);
 
     @Override
     public void initialize(Bootstrap<?> bootstrap) {
@@ -48,7 +52,7 @@ public class RiemannDropwizardBundle {
                             host = InetAddress.getLocalHost().getHostName();
                         }
                         riemann = new Riemann(riemannConfig.getHost(), riemannConfig.getPort());
-                        DropWizardRiemannReporter.Builder builder = DropWizardRiemannReporter.forRegistry(environment.metrics())
+                        RiemannReporter.Builder builder = RiemannReporter.forRegistry(environment.metrics())
                                 .tags(riemannConfig.getTags())
                                 .prefixedWith(riemannConfig.getPrefix())
                                 .useSeparator(".")
