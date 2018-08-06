@@ -1,4 +1,4 @@
-package io.riemann.dropwizard;
+package main.java.io.riemann.dropwizard;
 
 import com.codahale.metrics.riemann.Riemann;
 import com.codahale.metrics.riemann.RiemannReporter;

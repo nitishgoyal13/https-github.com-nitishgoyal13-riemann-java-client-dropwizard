@@ -1,40 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>io.riemann-java-client.dropwizard</groupId>
+    <groupId>riemann.java.client-dropwizard</groupId>
     <artifactId>riemann.java.client-dropwizard</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
-
-    <name>riemann-java-client-dropwizard</name>
-    <url>https://github.com/nitishgoyal13/riemann-dropwizard-bundle</url>
-
-    <distributionManagement>
-        <repository>
-            <id>clojars</id>
-            <name>Clojars repository</name>
-            <url>https://clojars.org/repo</url>
-        </repository>
-    </distributionManagement>
+    <version>1.0</version>
+    <name>riemann.java.client-dopwizard</name>
+    <description>Dropwizard integration with riemann java client</description>
 
     <scm>
-        <connection>scm:git:https://github.com/nitishgoyal13/riemann-dropwizard-bundle</connection>
-        <developerConnection>scm:git:https://github.com/nitishgoyal13/riemann-dropwizard-bundle</developerConnection>
-        <tag>HEAD</tag>
-        <url>https://github.com/nitishgoyal13/riemann-dropwizard-bundle</url>
+        <url>https://github.com/nitishgoyal13/riemann-java-client-dropwizard</url>
+        <connection>scm:git:git://github.com/nitishgoyal13/riemann-java-client-dropwizard.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/nitishgoyal13/riemann-java-client-dropwizard.git
+        </developerConnection>
+        <tag>45aff4f9a48c461881ad4c8a825465f8ce8371a0</tag>
     </scm>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
 
     <developers>
         <developer>
@@ -55,14 +36,72 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>resources</directory>
+            </testResource>
+        </testResources>
+        <directory>target</directory>
+        <outputDirectory>target/classes</outputDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>delombok</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <version>${lombok.maven.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <repositories>
         <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
             <id>clojars</id>
-            <name>Clojars repository</name>
-            <url>https://clojars.org/repo</url>
+            <url>https://repo.clojars.org/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
     </repositories>
-
+    <dependencyManagement>
+        <dependencies/>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>io.dropwizard</groupId>
@@ -92,34 +131,13 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>clojure</artifactId>
+            <version>1.3.0</version>
+        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>delombok</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <version>${lombok.maven.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <profiles>
         <profile>
             <id>lombok-needs-tools-jar</id>
@@ -148,4 +166,10 @@
             </build>
         </profile>
     </profiles>
+
 </project>
+
+        <!-- This file was autogenerated by Leiningen.
+          Please do not edit it directly; instead edit project.clj and regenerate it.
+          It should not be considered canonical data. For more information see
+          https://github.com/technomancy/leiningen -->
