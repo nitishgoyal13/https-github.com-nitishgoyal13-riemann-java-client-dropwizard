@@ -1,4 +1,4 @@
-package main.java.io.riemann.dropwizard;
+package io.riemann.dropwizard;
 
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
