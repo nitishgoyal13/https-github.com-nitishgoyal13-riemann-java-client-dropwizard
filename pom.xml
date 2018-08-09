@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>riemann.java.client-dropwizard</groupId>
+    <groupId>riemann.dropwizard</groupId>
     <artifactId>riemann.java.client-dropwizard</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>riemann.java.client-dopwizard</name>
+    <version>1.4</version>
+    <name>riemann.dopwizard</name>
     <description>Dropwizard integration with riemann java client</description>
     <url>https://github.com/nitishgoyal13/riemann-java-client</url>
 
